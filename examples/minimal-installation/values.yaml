@@ -23,19 +23,38 @@ postgresql:
     secretKeys:
       adminPasswordKey: postgresql-password
       userPasswordKey: postgresql-password
+  primary:
+    persistence:
+      size: 20Gi
 
 clickhouse:
   auth:
     existingSecret: langfuse
     existingSecretKey: clickhouse-password
+  persistence:
+    size: 20Gi
+  zookeeper:
+    persistence:
+      enabled: true
+      storageClass: ""
+      accessModes:
+        - ReadWriteOnce
+      size: 20Gi
+      dataLogDir:
+        size: 20Gi
 
 redis:
   auth:
     existingSecret: langfuse
     existingSecretPasswordKey: redis-password
+  primary:
+    persistence:
+      size: 20Gi
 
 s3:
   auth:
     existingSecret: langfuse
     rootUserSecretKey: s3-user
     rootPasswordSecretKey: s3-password
+  persistence:
+    size: 20Gi
